@@ -1,0 +1,94 @@
+
+body {
+    max-width: 400px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+
+    background-color: rgb(19, 95, 167);
+}
+
+h1 {font-weight: bold;
+    color: #333;
+    background-color: rgb(91, 226, 183);
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+    background-color: aquamarine;
+}
+
+.saldopanos {
+    border: 2px #ccbc47;
+    background-color: #cc478b;
+}
+
+.panos-painike {
+    width: 50px;
+    height: 50px;
+    background-color: #a5cc47;
+}
+
+#rullat {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.rulla {
+    width: 90px;
+    height: 100px;
+    border-radius: 20px;
+    font-size: 50px;
+    padding: 5px;
+    border: 2px solid #333;
+    background-color: #a767cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.symbol {
+    font-size: 20px;
+}
+
+#pelaa{
+    width: 320px;
+    height: 70px;
+    border-radius: 10px;
+    font-size: 32px;
+    padding: 5px 20px;
+    margin: 10px;
+    background-color: #4e9b50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.lukitse {
+    font-size: 12px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: 1px blue;
+    cursor: pointer;
+}
+
+#pelaa:hover, #lukitse:hover {
+    background-color: #45a049;
+    
+}
+
+#rulla1, #rulla2, #rulla3, #rulla4 {
+    font-size:50px;
+}
+
+#voittoIlmoitus {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
