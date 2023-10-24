@@ -1,19 +1,21 @@
 
 body {
-    margin: 0;
+    margin:0;
     
     font-family: Arial, sans-serif;
     text-align: center;
 }
 
 .container {
-    display: flex;
-    
 
+    display: flex;
     background-color: rgb(19, 95, 167);
 }
 
-h1 {font-weight: bold;
+h1 {
+    margin: 15px 0 8px 0;
+    padding: 5px;
+    font-weight: bold;
     color: #333;
     background-color: rgb(91, 226, 183);
 }
@@ -127,12 +129,12 @@ th:first-child, td:first-child {
 
 #voittotaulukko {
     /* Voittotaulukon tyyli */
-    margin-left: 20px; /* Lisää oikeanpuoleista marginaalia */
+    margin-left: 20px; 
 }
 
 #peli {
     /* Pelialueen tyyli */
-    margin-right: 10px; /* Lisää vasemmanpuoleista marginaalia */
+    margin-right: 10px; 
 }
 
 /* Media query kapeille näytöille */
