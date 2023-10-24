@@ -1,9 +1,5 @@
 
 body {
-    display: flex;
-    justify-content: center; /* Keskellä vaakasuunnassa */
-    align-items: center; /* Keskellä pystysuunnassa */
-    /*height: 100vh; /* 100% näyttökorkeudesta */
     margin: 0;
     
     font-family: Arial, sans-serif;
@@ -11,7 +7,8 @@ body {
 }
 
 .container {
-    max-width: 400px;
+    display: flex;
+    
 
     background-color: rgb(19, 95, 167);
 }
@@ -110,6 +107,7 @@ p {
     border: 2px solid red;
 }
 
+
 th:first-child, td:first-child {
     width: 0%;
 }
@@ -126,3 +124,19 @@ th:first-child, td:first-child {
 .voitto {
     font-weight: bold;
 }
+
+#voittotaulukko {
+    /* Voittotaulukon tyyli */
+    margin-left: 20px; /* Lisää oikeanpuoleista marginaalia */
+}
+
+#peli {
+    /* Pelialueen tyyli */
+    margin-right: 10px; /* Lisää vasemmanpuoleista marginaalia */
+}
+
+
+
+
+
+
