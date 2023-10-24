@@ -75,6 +75,12 @@ function tarkistaVoitto() {
         saldoElementti.textContent = saldo;
         näytäVoittoIlmoitus(`Voitit ${voittosumma} €!`);
         
+        // Päivitä Lukitse-painikkeiden tekstit
+        lukitsePainikkeet.forEach((painike, indeksi) => {
+        const tilaElement = painike.querySelector('.tila');
+        tilaElement.textContent = "Lukitse";
+        });
+
         // Nollaa rullien lukitukset
         lukitutRullat = [false, false, false, false];
         päivitäRullienTila();
@@ -117,6 +123,13 @@ lukitsePainikkeet.forEach((painike, indeksi) => {
     painike.addEventListener('click', () => {
         lukitutRullat[indeksi] = !lukitutRullat[indeksi];
         rullaElementit[indeksi].style.backgroundColor = lukitutRullat[indeksi] ? 'lightgray' : 'white'; 
+        // Päivitä "Lukitse" ja "Avaa" -tekstit
+        const tilaElement = painike.querySelector('.tila');
+        if (lukitutRullat[indeksi]) {
+            tilaElement.textContent = "Avaa";
+        } else {
+            tilaElement.textContent = "Lukitse";
+        }
     });
 });
 
@@ -134,6 +147,8 @@ function asetaAlkukuvat() {
     for (let i = 0; i < rullaElementit.length; i++) {
         rullaElementit[i].textContent = rullienKuvat[i].symbol;
     }
+    valittuPanos = 1; // Aseta panos 1€:ksi pelin alussa
+    panosElementti.textContent = valittuPanos + '€';
 }
 
 // Kutsu asetaAlkukuvat() pelin alussa
