@@ -135,7 +135,16 @@ th:first-child, td:first-child {
     margin-right: 10px; /* Lisää vasemmanpuoleista marginaalia */
 }
 
+/* Media query kapeille näytöille */
+@media screen and (max-width: 600px) {
+    .container {
+        flex-direction: column; /* Järjestellään elementit päällekkäin */
+    }
 
+    #voittotaulukko, #peli {
+        margin: 0; /* Poistetaan marginaalit, jotta ne ovat tiiviisti päällekkäin */
+    }
+}
 
 
 
