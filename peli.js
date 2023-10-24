@@ -1,10 +1,21 @@
+const voittoKuvat = ['🍒', '🍋', '🍊', '🍇', '7'];
+
 const rullienKuvat = [
     { symbol: '🍒', kerroin: 6 },
     { symbol: '🍋', kerroin: 6 },
     { symbol: '🍊', kerroin: 4 },
     { symbol: '🍇', kerroin: 3 },
-    { symbol: '7', kerroin: 10 }
-];
+    { symbol: '7', kerroin: 10 },
+    ];
+
+const voittoKertoimet = {
+    '🍒': 6,
+    '🍋': 5,
+    '🍊': 4,
+    '🍇': 3,
+    '7': 10,
+    '77': 5
+};
 
 let saldo = 100;
 let valittuPanos = 1;
@@ -45,35 +56,24 @@ function tarkistaVoitto() {
         kuvat.push(rullaElementit[i].textContent);
     }
 
-    const voittoKuvat = ['🍒', '🍋', '🍊', '🍇', '7', '77'];
-    const voittoKertoimet = {
-        '🍒': 6,
-        '🍋': 5,
-        '🍊': 4,
-        '🍇': 3,
-        '7': 10,
-        '77': 5
-    };
-
     let voitto = false;
-    let voittokerroin = 0
-
+    let voittosumma = 0;
+        
     for (const kuva of voittoKuvat) {
         const esiintymat = kuvat.filter(k => k === kuva).length;
         if (esiintymat === 4) {
             voitto = true;
-            saldo += voittoKertoimet[kuva] * valittuPanos;
-            break; // Voitto on löydetty, ei tarvitse tarkistaa muita symboleita
+            voittosumma += voittoKertoimet[kuva] * valittuPanos;
         } else if (esiintymat === 3 && kuva === '7') {
             voitto = true;
-            voittokerroin = voittoKertoimet['77'];
-            saldo += voittokerroin * valittuPanos;
+            voittosumma += voittoKertoimet['77'] * valittuPanos;
         }
     }
 
     if (voitto) {
+        saldo += voittosumma;
         saldoElementti.textContent = saldo;
-        näytäVoittoIlmoitus(`Voitit ${voittokerroin * valittuPanos} €!`);
+        näytäVoittoIlmoitus(`Voitit ${voittosumma} €!`);
         
         // Nollaa rullien lukitukset
         lukitutRullat = [false, false, false, false];
@@ -83,21 +83,7 @@ function tarkistaVoitto() {
         setTimeout(() => {
             pyoraytaRullat();
         }, 1000);
-    } else {
-        tyhjennäVoittoIlmoitus();
     }
-
-    return voitto;
-}
-
-// Laske voittosumma symbolien perusteella
-function laskeVoittosumma() {
-    let voittosumma = 0;
-    for (const kuva of voittoKuvat) {
-        const esiintymat = kuvat.filter(k => k === kuva).length;
-        voittosumma += voittoKertoimet[kuva] * valittuPanos * esiintymat;
-    }
-    return voittosumma;
 }
 
 function päivitäRullienTila() {
@@ -106,16 +92,6 @@ function päivitäRullienTila() {
     });
 }
 
-/*function päivitäLukitsePainikkeidenTila() {
-    lukitsePainikkeet.forEach((painike, indeksi) => {
-        const tilaElement = painike.querySelector('.tila');
-        if (lukitutRullat[indeksi]) {
-            tilaElement.textContent = "Avaa";
-        } else {
-            tilaElement.textContent = "Lukitse";
-        }
-    });
-}*/
 function nollaaRullienLukitukset() {
     lukitutRullat = [false, false, false, false];
     päivitäRullienTila();
@@ -133,48 +109,6 @@ pelaaButton.addEventListener('click', () => {
     pyoraytaRullat();
     const voitto = tarkistaVoitto();
 
-    if (voitto) {
-        näytäVoittoIlmoitus(`Voitit ${laskeVoittosumma()} €!`);
-        return;
-    } else {
-        näytäVoittoIlmoitus("Et voittanut tällä kertaa.");
-    }
-
-    // Voiton tarkistus tapahtuu 1 sekunti pyörimisen jälkeen
-    if (kuvat.filter(k => k === '7').length === 4) {
-        saldo += 10 * valittuPanos;
-        saldoElementti.textContent = saldo;
-        nollaaRullienLukitukset();
-    
-    } else if (kuvat.filter(k => k === '🍒').length === 4) {
-        saldo += 6 * valittuPanos;
-        saldoElementti.textContent = saldo;
-        nollaaRullienLukitukset();
-    
-    } else if (kuvat.filter(k => k === '🍋').length === 4) {
-        saldo += 5 * valittuPanos;
-        saldoElementti.textContent = saldo;
-        nollaaRullienLukitukset();
-    
-    } else if (kuvat.filter(k => k === '🍊').length === 4) {
-        saldo += 4 * valittuPanos;
-        saldoElementti.textContent = saldo;
-        nollaaRullienLukitukset();
-    
-    } else if (kuvat.filter(k => k === '🍇').length === 4) {
-        saldo += 3 * valittuPanos;
-        saldoElementti.textContent = saldo;
-        nollaaRullienLukitukset();
-    
-    } else if (kuvat.filter(k => k === '7').length === 3) {
-        saldo += 5 * valittuPanos;
-        saldoElementti.textContent = saldo;
-        nollaaRullienLukitukset();
-    
-    }
-
-
-
 });
 
 const lukitsePainikkeet = document.querySelectorAll('.lukitse');
@@ -182,16 +116,7 @@ const lukitsePainikkeet = document.querySelectorAll('.lukitse');
 lukitsePainikkeet.forEach((painike, indeksi) => {
     painike.addEventListener('click', () => {
         lukitutRullat[indeksi] = !lukitutRullat[indeksi];
-        rullaElementit[indeksi].style.backgroundColor = lukitutRullat[indeksi] ? 'lightgray' : 'white';
-        /*päivitäLukitsePainikkeidenTila(); // Päivitä painikkeiden tekstit
-
-        // Päivitä "Lukitse" ja "Avaa" -tekstit erikseen
-        const tilaElement = painike.querySelector('.tila');
-        if (lukitutRullat[indeksi]) {
-            tilaElement.textContent = "Avaa"; // Muutettu Lukitse -> Avaa
-        } else {
-            tilaElement.textContent = "Lukitse"; // Muutettu Avaa -> Lukitse
-        }*/
+        rullaElementit[indeksi].style.backgroundColor = lukitutRullat[indeksi] ? 'lightgray' : 'white'; 
     });
 });
 
