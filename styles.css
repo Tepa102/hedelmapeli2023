@@ -92,3 +92,32 @@ p {
     color: white;
     font-weight: bold;
 }
+
+#panos {
+    color: red;
+    font-weight: bolder;
+    font-size: 1.2em;
+}
+
+.taulukko {
+    width: 100%;
+    background-color: #dbb1c7;
+    border: 2px solid red;
+}
+
+th:first-child, td:first-child {
+    width: 0%;
+}
+.kuvio {
+    font-size: 32px;
+    background-color: #1b8ebb;
+}
+.rivi {
+    padding: 2px;
+    margin: 4px;
+    border: 2px solid red;
+}
+
+.voitto {
+    font-weight: bold;
+}
