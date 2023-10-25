@@ -90,6 +90,8 @@ function tarkistaVoitto() {
         setTimeout(() => {
             pyoraytaRullat();
         }, 1000);
+    } else {
+        näytäVoittoIlmoitus(`Et voittanut tällä kertaa!`);
     }
 }
 
