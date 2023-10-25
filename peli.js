@@ -31,6 +31,7 @@ const voittoIlmoitusElementti = document.getElementById('voittoIlmoitus');
 function näytäVoittoIlmoitus(teksti) {
     voittoIlmoitusElementti.textContent = teksti;
 }
+
 function tyhjennäVoittoIlmoitus() {
     voittoIlmoitusElementti.textContent = ''; // Tyhjennä voittoilmoitus
 }
@@ -117,7 +118,7 @@ pelaaButton.addEventListener('click', () => {
 
     // Pyöritä rullat
     pyoraytaRullat();
-    const voitto = tarkistaVoitto();
+    voitto = tarkistaVoitto();
 
 });
 

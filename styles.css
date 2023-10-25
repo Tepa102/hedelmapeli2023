@@ -129,7 +129,9 @@ th:first-child, td:first-child {
 
 #voittotaulukko {
     /* Voittotaulukon tyyli */
-    margin-left: 20px; 
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 80px, 0;
 }
 
 #peli {
