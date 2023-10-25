@@ -108,6 +108,10 @@ pelaaButton.addEventListener('click', () => {
         return;
     } /*toimiiko tämä kohta???*/
     
+    if (valittuPanos > saldo) {
+        alert('Panos ei voi olla suurempi kuin saldo.');
+        return;
+    }
     saldo -= valittuPanos;
     saldoElementti.textContent = saldo;
 
@@ -153,5 +157,3 @@ function asetaAlkukuvat() {
 
 // Kutsu asetaAlkukuvat() pelin alussa
 asetaAlkukuvat();
-
-
