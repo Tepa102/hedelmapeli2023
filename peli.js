@@ -143,16 +143,23 @@ const lukitsePainikkeet = document.querySelectorAll('.lukitse');
 
 lukitsePainikkeet.forEach((painike, indeksi) => {
     painike.addEventListener('click', () => {
-        if (!lukitutRullat[indeksi] && lukitutRullat.filter(lukittu => lukittu).length >= 3) {
-            alert('Voit lukita enintään 3 rullaa.');
+        if (!lukitutRullat[indeksi] && lukitutRullat.filter(lukittu => lukittu).length >= 2) {
+            alert('Voit lukita enintään 2 rullaa.');
             return;
         }
 
         lukitutRullat[indeksi] = !lukitutRullat[indeksi];
         rullaElementit[indeksi].style.backgroundColor = lukitutRullat[indeksi] ? 'lightgray' : 'white'; 
         // Päivitä "Lukitse" ja "Avaa" -tekstit
-
-        if (!voitto) {
+        const tilaElement = painike.querySelector('.tila');
+        if (lukitutRullat[indeksi]) {
+            tilaElement.textContent = "Avaa";
+            console.log("avaa", lukitutRullat)
+        } else {
+            tilaElement.textContent = "Lukitse";
+            console.log("lukitse", lukitutRullat)
+        }
+        /*if (!voitto) {
             lukitutRullat[indeksi] = !lukitutRullat[indeksi];
             rullaElementit[indeksi].style.backgroundColor = lukitutRullat[indeksi] ? 'lightgray' : 'white'; 
             // Päivitä "Lukitse" ja "Avaa" -tekstit
@@ -163,8 +170,7 @@ lukitsePainikkeet.forEach((painike, indeksi) => {
             } else {
                 tilaElement.textContent = "Lukitse";
                 console.log("lukitse", lukitutRullat)
-            }
-        }
+            }*/
     });
 });
 
